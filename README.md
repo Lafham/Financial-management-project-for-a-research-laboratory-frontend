@@ -1,4 +1,4 @@
-# Labo
+# Financial-management-project-for-a-research-laboratory
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
 
