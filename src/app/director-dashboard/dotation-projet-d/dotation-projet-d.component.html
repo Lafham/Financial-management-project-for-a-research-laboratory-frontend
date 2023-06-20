@@ -1,0 +1,252 @@
+<!-------------------------sidebar------------>
+<!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3><img src="https://www.mapexpress.ma/wp-content/uploads/2020/05/Universit%C3%A9-Cadi-Ayyad.jpg"
+                class="img-fluid" /><span>UCA_Labo</span></h3>
+    </div>
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a  routerLink="/" class="dashboard"><i class="material-icons">logout</i>
+                <span>logout</span></a>
+
+
+        <li class="dropdown">
+            <a routerLink="/membreD" data-toggle="collapse" aria-expanded="false">
+                <i class="material-icons">grid_on</i><span>Membres</span></a>
+        </li>
+
+
+        <li class="dropdown">
+            <a routerLink="/expbesoinD" data-toggle="collapse" aria-expanded="false">
+                <i class="material-icons">extension</i><span>Exp_Besoin</span></a>
+        </li>
+
+
+
+
+        <li class="dropdown">
+            <a routerLink="/dotationucarechD" data-toggle="collapse" aria-expanded="false">
+                <i class="material-icons">content_copy</i><span>Dotation UCA Rech</span></a>
+
+        <li class="">
+            <a routerLink="/dotationprojetD"><i class="material-icons">date_range</i><span>Dotation Projet</span></a>
+        </li>
+
+        <li class="">
+            <a routerLink="/dotationmembreD"><i class="material-icons">library_books</i><span>Dotation Membre
+                </span></a>
+        </li>
+        <li class="">
+            <a routerLink="/projetD"><i class="material-icons">library_books</i><span>Projet
+                </span></a>
+        </li>
+
+
+    </ul>
+
+
+</nav>
+
+
+<div class="top-navbar">
+    <div class="xp-topbar">
+
+        <!-- Start XP Row -->
+        <div class="row">
+            <!-- Start XP Col -->
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <div class="xp-menubar">
+                    <span class="material-icons text-white">signal_cellular_alt
+                    </span>
+                </div>
+            </div>
+            <!-- End XP Col -->
+
+
+        </div>
+        <!-- End XP Row -->
+
+    </div>
+    <div class="xp-breadcrumbbar text-center">
+        <h4 class="page-title">Dashboard</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
+                            <h2 class="ml-lg-2">Gérer les Dotations des Projets </h2>
+                        </div>
+                        <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                                <i class="material-icons">&#xE147;</i> <span>Ajouter une dotation </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Membre </th>
+                            <th>Projet</th>
+                            <th>Dotation Projet</th>
+                            <th>date Debut</th>
+                            <th>date Fin</th>
+                            <!-- <th>Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dotprojet of dotProjets">
+                            <td>{{getMembreName(dotprojet.id.membre_id)}}</td>
+                            <td>{{getProjetName(dotprojet.id.projet_id)}}</td>
+                            <td>{{dotprojet.dotationProjet}}</td>
+                            <td>{{dotprojet.dateDebut}}</td>
+                            <td>{{dotprojet.dateFin}}</td>
+                            <!-- <td>
+                                <button mat-icon-button color="" (click)="updateDotProjet(dotprojet)" class="edit"
+                                    data-toggle="modal" data-target="#editEmployeeModal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i>
+                                </button>
+                                <button mat-icon-button color="" data-target="#deleteEmployeeModal" class="delete"
+                                    data-toggle="modal"
+                                    (click)="deleteDotProjet(dotprojet.id.membre_id, dotprojet.id.projet_id)">
+                                    <i class="material-icons" data-toggle="tooltip" title="Supprimer">&#xE872;</i>
+                                </button>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+<!-- 
+            <div id="addEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="onSubmit(DotProjetFrom)" #DotProjetFrom="ngForm">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Ajouter un Membre</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="id">Membre</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotProjet.id.membre_id"
+                                        required>
+                                        <option *ngFor="let membre of membres" [value]="membre.id">{{membre.nom}} +
+                                            {{membre.prenom}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id">Projet</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotProjet.id.projet_id"
+                                        required>
+                                        <option *ngFor="let projet of projets" [value]="projet.id">{{projet.nom}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Date Debut</label>
+                                        <input type="date" class="form-control" [(ngModel)]="dotProjet.dateDebut" name="dateDebut" 
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date Fin</label>
+                                        <input type="date" class="form-control" [(ngModel)]="dotProjet.dateFin"  name="dateFin"  
+                                            required>
+                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-success"
+                                                [disabled]="!DotProjetFrom.valid">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- Edit Modal HTML -->
+            <!-- <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="onSubmit_Edit(DotProjetUpdateForm)" #DotProjetUpdateForm="ngForm">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modifier Dotation Projet</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Membre</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotProjet.id.membre_id"
+                                        required>
+                                        <option *ngFor="let membre of membres" [value]="membre.id">{{membre.nom}} +
+                                            {{membre.prenom}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Projet</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotProjet.id.projet_id"
+                                        required>
+                                        <option *ngFor="let projet of projets" [value]="projet.id">{{projet.nom}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Date Debut</label>
+                                    <input type="date" class="form-control" [value]="dotProjet.dateDebut"
+                                        [(ngModel)]="dotProjet.dateDebut" name="dateDebut" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Date Fin</label>
+                                    <input type="date" class="form-control" [value]="dotProjet.dateFin"
+                                        [(ngModel)]="dotProjet.dateFin" name="dateFin" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-success"
+                                        [disabled]="!DotProjetUpdateForm.valid">Modifier</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Modal HTML -->
+            <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="ngOnInit()">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Supprimer Dotation Projet</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Êtes-vous sûr de vouloir supprimer cette dotation</p>
+                                <p class="text-warning"><small>Cette action est irréversible.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-danger"
+                                    (click)="deleteDotProjet(dotProjet.id.membre_id, dotProjet.id.projet_id )"
+                                    data-dismiss="modal">Supprimer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

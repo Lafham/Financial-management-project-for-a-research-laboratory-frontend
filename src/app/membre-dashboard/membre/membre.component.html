@@ -1,0 +1,52 @@
+<!-------------------------sidebar------------>
+<!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3><img src="https://www.mapexpress.ma/wp-content/uploads/2020/05/Universit%C3%A9-Cadi-Ayyad.jpg"
+                class="img-fluid" /><span>UCA_Labo</span></h3>
+    </div>
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a routerLink="/" class="dashboard"><i class="material-icons">logout</i>
+                <span>Logout</span></a>
+        </li>
+
+
+        <li class="dropdown">
+            <a routerLink="/expbesoinM" data-toggle="collapse" aria-expanded="false">
+                <i class="material-icons">extension</i><span>Exp_Besoin</span></a>
+        </li>
+
+    </ul>
+
+
+
+</nav>
+
+
+<div class="top-navbar">
+    <div class="xp-topbar">
+
+        <!-- Start XP Row -->
+        <div class="row">
+            <!-- Start XP Col -->
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <div class="xp-menubar">
+                    <span class="material-icons text-white">signal_cellular_alt
+                    </span>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- End XP Row -->
+
+    </div>
+    <div class="xp-breadcrumbbar text-center">
+        <h4 class="page-title">Dashboard</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,271 @@
+
+        <!-------------------------sidebar------------>
+		     <!-- Sidebar  -->
+             <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3><img src="https://www.mapexpress.ma/wp-content/uploads/2020/05/Universit%C3%A9-Cadi-Ayyad.jpg" class="img-fluid"/><span>UCA_Labo</span></h3>
+                </div>
+                <ul class="list-unstyled components">
+                <li  class="active">
+                        <a routerLink="/" class="dashboard"><i class="material-icons">logout</i>
+                        <span>logout</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a routerLink="/responsable" data-toggle="collapse" aria-expanded="false" 
+                        >
+                        <i class="material-icons">aspect_ratio</i>Responsable</a>
+                    </li>            
+                   
+                   <li class="dropdown">
+                    <a routerLink="/membre" data-toggle="collapse" aria-expanded="false" 
+                    >
+                    <i class="material-icons">grid_on</i><span>Membres</span></a>
+                </li>
+
+                    <li class="dropdown">
+                        <a routerLink="/etablissement" data-toggle="collapse" aria-expanded="false" 
+                        >
+                        <i class="material-icons">apps</i><span>Etablissement</span></a>
+                    </li>
+                    
+                     <li class="dropdown">
+                        <a routerLink="/laboratoire" data-toggle="collapse" aria-expanded="false" 
+                        >
+                        <i class="material-icons">equalizer</i>
+                        <span>Laboratoire</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a routerLink="/utilisateur" data-toggle="collapse" aria-expanded="false" 
+                        >
+                        <i class="material-icons">extension</i>
+                        <span>Utilisateurs</span></a>
+                    </li>
+                      <li class="dropdown">
+                        <a routerLink="/expbesoin" data-toggle="collapse" aria-expanded="false" 
+                        >
+                        <i class="material-icons">extension</i><span>Exp_Besoin</span></a>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a routerLink="/typebesoin" data-toggle="collapse" aria-expanded="false" 
+                        >
+                        <i class="material-icons">border_color</i><span>Type Besoin</span></a>
+                    </li>
+                   
+                   
+                   
+                     <li class="dropdown">
+                        <a routerLink="/dotationucarech" data-toggle="collapse" aria-expanded="false" 
+                        >
+                        <i class="material-icons">content_copy</i><span>Dotation UCA Rech</span></a>
+                        
+                        <li class="">
+                            <a routerLink="/dotationprojet"><i class="material-icons">date_range</i><span>Dotation Projet</span></a>
+                        </li>
+                        
+                        <li  class="">
+                            <a routerLink="/dotationmembre"><i class="material-icons">library_books</i><span>Dotation Membre
+                            </span></a>
+                    </li>
+                   
+                    <li class="">
+                        <a routerLink="/projet"><i class="material-icons">library_books</i><span>Projet
+                            </span></a>
+                    </li>
+                </ul>
+    
+               
+            </nav>
+
+
+            <div class="top-navbar">
+                <div class="xp-topbar">
+            
+                  <!-- Start XP Row -->
+                  <div class="row"> 
+                      <!-- Start XP Col -->
+                      <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                          <div class="xp-menubar">
+                                 <span class="material-icons text-white">signal_cellular_alt
+                                 </span>
+                           </div>
+                      </div> 
+                      <!-- End XP Col -->
+            
+            
+                  </div> 
+                  <!-- End XP Row -->
+            
+              </div>
+               <div class="xp-breadcrumbbar text-center">
+                  <h4 class="page-title">Dashboard</h4>  
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>                
+              </div>
+             </div>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
+                            <h2 class="ml-lg-2">Gérer les Etablissements </h2>
+                        </div>
+                        <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                                <i class="material-icons">&#xE147;</i> <span>Ajouter un nouveau membre </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nom </th>
+                            <th>telephone</th>
+                            <th>Email</th>
+                            <th>Adresse</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let etab of etablissements">
+                            <td>{{etab.nom}}</td>
+                            <td>{{etab.telephone}}</td>
+                            <td>{{etab.email}}</td>
+                            <td>{{etab.adresse}}</td>
+                            <td>
+                                <button mat-icon-button color="" (click)="updateEtablissement(etab)" class="edit"
+                                    data-toggle="modal" data-target="#editEmployeeModal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i>
+                                </button>
+                                <button mat-icon-button color="" data-target="#deleteEmployeeModal" class="delete"
+                                    data-toggle="modal" (click)="deleteEtablissement(etab.id!)">
+                                    <i class="material-icons" data-toggle="tooltip" title="Supprimer">&#xE872;</i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="onSubmit(EtablissementForm)" #EtablissementForm="ngForm">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Ajouter un Membre</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Nom Etablissement</label>
+                                    <input type="text" class="form-control" [(ngModel)]="etablissement.nom" name="nom"
+                                        required>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Telephone</label>
+                                                <input type="text" class="form-control"
+                                                    [(ngModel)]="etablissement.telephone" name="telephone" required>
+                                            </div>
+                                        </div>
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" [(ngModel)]="etablissement.email"
+                                            name="email" required>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Adresse</label>
+                                            <input type="text" class="form-control" [(ngModel)]="etablissement.adresse"
+                                                name="adresse" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-success"
+                                                [disabled]="!EtablissementForm.valid">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Modal HTML -->
+            <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="onSubmit_Edit(EtablissementUpdateForm)" #EtablissementUpdateForm="ngForm">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modifier Etablissement</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Nom Etablissement</label>
+                                    <input type="text" class="form-control" [value]="etablissement.nom"
+                                        [(ngModel)]="etablissement.nom" name="nom" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Telephone</label>
+                                    <input type="text" class="form-control" [value]="etablissement.telephone"
+                                        [(ngModel)]="etablissement.telephone" name="telephone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" [value]="etablissement.email"
+                                        [(ngModel)]="etablissement.email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Adresse</label>
+                                    <input type="text" class="form-control" [value]="etablissement.adresse"
+                                        [(ngModel)]="etablissement.adresse" name="adresse" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-success"
+                                        [disabled]="!EtablissementUpdateForm.valid">Modifier</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Modal HTML -->
+            <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="ngOnInit()">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Supprimer l'Etablissement</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Êtes-vous sûr de vouloir supprimer cet etablissement?</p>
+                                <p class="text-warning"><small>Cette action est irréversible.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-danger" (click)="deleteEtablissement(etablissement.id!)"
+                                    data-dismiss="modal">Supprimer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

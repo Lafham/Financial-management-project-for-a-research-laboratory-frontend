@@ -1,0 +1,236 @@
+<!-------------------------sidebar------------>
+<!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3><img src="https://www.mapexpress.ma/wp-content/uploads/2020/05/Universit%C3%A9-Cadi-Ayyad.jpg"
+                class="img-fluid" /><span>UCA_Labo</span></h3>
+    </div>
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a routerLink="/" class="dashboard"><i class="material-icons">logout</i>
+                <span>logout</span></a>
+        </li>
+
+        <li class="dropdown">
+            <a routerLink="/membreD" data-toggle="collapse" aria-expanded="false">
+                <i class="material-icons">grid_on</i><span>Membres</span></a>
+        </li>
+
+
+        <li class="dropdown">
+            <a routerLink="/expbesoinD" data-toggle="collapse" aria-expanded="false">
+                <i class="material-icons">extension</i><span>Exp_Besoin</span></a>
+        </li>
+
+
+        <li class="dropdown">
+            <a routerLink="/dotationucarechD" data-toggle="collapse" aria-expanded="false">
+                <i class="material-icons">content_copy</i><span>Dotation UCA Rech</span></a>
+
+        <li class="">
+            <a routerLink="/dotationprojetD"><i class="material-icons">date_range</i><span>Dotation Projet</span></a>
+        </li>
+
+        <li class="">
+            <a routerLink="/dotationmembreD"><i class="material-icons">library_books</i><span>Dotation Membre
+                </span></a>
+        </li>
+        <li class="">
+            <a routerLink="/projetD"><i class="material-icons">library_books</i><span>Projet
+                </span></a>
+        </li>
+
+
+    </ul>
+
+
+</nav>
+
+
+<div class="top-navbar">
+    <div class="xp-topbar">
+
+        <!-- Start XP Row -->
+        <div class="row">
+            <!-- Start XP Col -->
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <div class="xp-menubar">
+                    <span class="material-icons text-white">signal_cellular_alt
+                    </span>
+                </div>
+            </div>
+            <!-- End XP Col -->
+
+
+        </div>
+        <!-- End XP Row -->
+
+    </div>
+    <div class="xp-breadcrumbbar text-center">
+        <h4 class="page-title">Dashboard</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
+                            <h2 class="ml-lg-2">Liste Dotations des Projets </h2>
+                        </div>
+                        <!-- <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                                <i class="material-icons">&#xE147;</i> <span>Ajouter une dotation </span>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Membre </th>
+                            <th>Projet</th>
+                            <th>Dotation Membre</th>
+                            <!-- <th>Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dotmembre of dotMembres">
+                            <td>{{getMembreName(dotmembre.id.membre_id)}}</td>
+                            <td>{{getDotationPrix(dotmembre.id.dot_id)}}</td>
+                            <td>{{dotmembre.dotation_Membre}}</td>
+                            <!-- <td>
+                                <button mat-icon-button color="" (click)="updateDotMembre(dotmembre)" class="edit"
+                                    data-toggle="modal" data-target="#editEmployeeModal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i>
+                                </button>
+                                <button mat-icon-button color="" data-target="#deleteEmployeeModal" class="delete"
+                                    data-toggle="modal"
+                                    (click)="deleteDotMembre(dotmembre.id.membre_id, dotmembre.id.dot_id)">
+                                    <i class="material-icons" data-toggle="tooltip" title="Supprimer">&#xE872;</i>
+                                </button>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- <div id="addEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="onSubmit(DotMembreForm)" #DotMembreForm="ngForm">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Ajouter une Dotation </h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="id">Membre</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotMembre.id.membre_id"
+                                        required>
+                                        <option *ngFor="let membre of membres" [value]="membre.id">{{membre.nom}} +
+                                            {{membre.prenom}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id">Dotation</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotMembre.id.dot_id" 
+                                        required>
+                                        <option *ngFor="let dot of dotations" [value]="dot.id">{{dot.dotationBase}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Dotation Membre</label>
+                                        <input type="number" class="form-control" [(ngModel)]="dotMembre.dotation_Membre" name="dotation_Membre" 
+                                            required>
+                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-success"
+                                                [disabled]="!DotMembreForm.valid">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- Edit Modal HTML -->
+            <!-- <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="onSubmit_Edit(DotMembreUpdateForm)" #DotMembreUpdateForm="ngForm">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modifier Dotation Projet</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Membre</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotMembre.id.membre_id"
+                                        required>
+                                        <option *ngFor="let membre of membres" [value]="membre.id">{{membre.nom}} +
+                                            {{membre.prenom}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dotation</label>
+                                    <select class="form-control" id="id" name="id" [(ngModel)]="dotMembre.id.dot_id"
+                                        required>
+                                        <option *ngFor="let dot of dotations" [value]="dot.id">{{dot.dotationBase}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dotation Membre</label>
+                                    <input type="number" class="form-control" [value]="dotMembre.dotation_Membre" 
+                                        [(ngModel)]="dotMembre.dotation_Membre" name="dotation_Membre" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-success"
+                                        [disabled]="!DotMembreUpdateForm.valid">Modifier</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- Delete Modal HTML -->
+            <!-- <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form (ngSubmit)="ngOnInit()">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Supprimer Dotation Memrbe</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Êtes-vous sûr de vouloir supprimer cette dotation</p>
+                                <p class="text-warning"><small>Cette action est irréversible.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-danger"
+                                    (click)="deleteDotMembre(dotMembre.id.membre_id, dotMembre.id.dot_id)"
+                                    data-dismiss="modal">Supprimer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
